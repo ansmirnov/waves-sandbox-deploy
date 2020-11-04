@@ -1,0 +1,38 @@
+#+TITLE: Waves Sandbox deploy
+#+PROPERTY: header-args :session *shell waves* :results silent raw
+
+** Prepare directory
+
+#+BEGIN_SRC sh
+mkdir -p ~/waves-sandbox ; cd ~/waves-sandbox
+#+END_SRC
+
+** Download docker-compose.yml
+
+#+BEGIN_SRC sh
+curl -L https://github.com/waves-enterprise/WE-releases/releases/download/v1.4.0/docker-compose.yml > docker-compose.yml
+#+END_SRC
+
+** Install sandbox
+
+#+BEGIN_SRC sh
+docker run --rm -ti -v $(pwd):/config-manager/output wavesenterprise/config-manager:v1.4.0
+#+END_SRC
+
+** Run the sandbox
+
+#+BEGIN_SRC sh
+docker-compose up -d
+#+END_SRC
+
+** Connect to the nodes
+
+Client application: http://127.0.0.1/
+
+Node REST API: http://localhost/node-0
+
+** Stop the sandbox
+
+#+BEGIN_SRC sh
+docker-compose down
+#+END_SRC
